@@ -19,8 +19,8 @@ public class AlunoController {
     private AlunoServiceImpl service;
 
     @GetMapping
-    public List<Aluno> getAll(){
-        return service.getAll();
+    public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNacimento){
+        return service.getAll(dataDeNacimento);
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public Aluno update (@PathVariable Long id, @RequestBody AlunoUpdateForm form){
+    public Aluno update (@PathVariable Long id, @Valid @RequestBody AlunoUpdateForm form){
         return service.update(id, form);
     }
 
